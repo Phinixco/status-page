@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +47,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+
+        $this->renderable(function (NotFoundException $notFoundException) {
+            return (new JsonResponse([
+                'error' => 'Not Found',
+                'error_code' => 404,
+            ]))->setStatusCode(404);
+        });
     }
+
+
 }

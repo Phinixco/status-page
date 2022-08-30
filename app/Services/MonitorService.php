@@ -10,10 +10,12 @@ class MonitorService
 {
     public function createMonitor(string $name): Monitor
     {
-        return Monitor::query()->create([
-            'name' => $name,
-            'status' => Monitor::STATUS_UP
-        ]);
+        $monitor = new Monitor();
+        $monitor->name = $name;
+        $monitor->status = Monitor::STATUS_UP;
+        $monitor->save();
+
+        return $monitor;
     }
 
     /**
@@ -62,6 +64,5 @@ class MonitorService
         if ($count == 0)
             throw new NotFoundException();
     }
-
 
 }

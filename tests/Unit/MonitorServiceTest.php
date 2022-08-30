@@ -8,7 +8,7 @@ use App\Services\MonitorService;
 use Tests\TestCase;
 
 
-class MonitorServiceTest extends TestCase
+    class MonitorServiceTest extends TestCase
 {
 
     private MonitorService $monitorService;
