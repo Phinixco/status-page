@@ -45,7 +45,27 @@ use Tests\TestCase;
         $this->assertEquals($monitor->status, $newMonitor->status);
     }
 
-    public function test_update_monitor(): void
+        public function test_get_monitor_by_id_not_found(): void
+        {
+            $this->expectException(NotFoundException::class);
+            $this->monitorService->getMonitor(41351342);
+        }
+
+        public function test_update_monitor_by_id_not_found(): void
+        {
+            $this->expectException(NotFoundException::class);
+            $this->monitorService->updateMonitor(41351342,[
+                'name'=>'test'
+            ]);
+        }
+
+        public function test_delete_monitor_by_id_not_found(): void
+        {
+            $this->expectException(NotFoundException::class);
+            $this->monitorService->deleteMonitor(41351342);
+        }
+
+        public function test_update_monitor(): void
     {
         $monitor = $this->monitorService->createMonitor('Test monitor');
 

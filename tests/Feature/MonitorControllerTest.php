@@ -117,6 +117,12 @@ class MonitorControllerTest extends TestCase
     }
 
 
+    public function test_update_monitor_by_id_not_found(){
+        $response = $this->patch('api/monitors/123123312312');
+        $response->assertStatus(404);
+    }
+
+
     public function test_update_monitor_by_id()
     {
         $yesterday = Carbon::yesterday();
